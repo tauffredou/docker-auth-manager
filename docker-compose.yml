@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  postgres:
+    image: postgres:9
+    environment:
+     - POSTGRES_PASSWORD=password
+    ports:
+     - 5432:5432
+
+  ldap:
+    image: osixia/openldap:1.1.6
+    environment:
+     - LDAP_DOMAIN=example.com
+     - LDAP_ORGANISATION="Example org"
+     - LDAP_ADMIN_PASSWORD=secret
+    volumes:
+    - ./src/test/resources/users.ldif:/data/users.ldif
+    ports:
+      - 389:389
+
