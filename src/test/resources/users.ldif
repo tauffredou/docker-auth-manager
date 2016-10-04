@@ -1,0 +1,43 @@
+dn: dc=example,dc=com
+objectClass: dcObject
+objectClass: organization
+dc: example
+o: Example, Inc.
+
+dn: ou=people, dc=example,dc=com
+objectclass: organizationalunit
+ou: people
+
+# Groups
+dn: ou=groups,dc=example,dc=com
+objectClass: organizationalunit
+objectClass: top
+ou: groups
+
+dn: cn=admins,ou=groups,dc=example,dc=com
+objectclass: top
+objectclass: groupOfUniqueNames
+uniqueMember: uid=alice,ou=people,dc=example,dc=com
+cn: admins
+
+# test users
+dn: uid=alice,ou=people,dc=example,dc=com
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+memberOf: cn=admins,ou=groups,dc=example,dc=com
+cn: alice
+uid: alice
+sn: alice
+userpassword: alice
+
+dn: uid=bob,ou=people,dc=example,dc=com
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+cn: bob
+uid: bob
+sn: bob
+userpassword: bob
